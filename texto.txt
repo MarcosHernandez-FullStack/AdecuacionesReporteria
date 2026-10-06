@@ -1,0 +1,24 @@
+Imaginemos que el cliente "Juan Pérez" (Código de cliente: 12345) tiene tres productos, pero por alguna parametrización del banco, uno de esos productos tiene un código CORASU ligeramente distinto en los archivos:
+Cuenta corriente: 1000 soles (Cliente: 12345 | CORASU: F00)
+
+
+Cuenta a plazo: 990 soles (Cliente: 12345 | CORASU: F01)
+
+
+Cuenta de ahorro: 980 soles (Cliente: 12345 | CORASU: F00)
+
+Lo que ocurre actualmente (El Error):
+Como el programa antiguo evalúa Cliente + CORASU, esto es lo que hace al leer los registros:
+Lee el producto 1 (12345-F00). Suma 1000 soles.
+
+
+Lee el producto 2 (12345-F01). Como el CORASU cambió de F00 a F01, el programa "cree" que es un cliente distinto. Cierra el cálculo anterior, cuenta a Juan una vez en el rango de 0 a 1000 (por sus primeros 1000 soles), y empieza a sumar desde cero el producto 2.
+
+
+Lee el producto 3 (12345-F00). Como el CORASU volvió a cambiar de F01 a F00, el programa vuelve a cortar. Cuenta a Juan una segunda vez en el rango de 0 a 1000 (por los 990 soles).
+
+
+Termina de leer. Cuenta a Juan una tercera vez en el rango de 0 a 1000 (por los 980 soles).
+
+
+Resultado incorrecto: El banco reporta 3 clientes distintos en el rango más bajo, alterando la estadística.
