@@ -913,20 +913,28 @@
 064900*-------------*                                                   08720001
       *201001166-INI                                                    08730001
       *    IF ANX-CENTRAL NOT = W-ANT-CENTRAL OR                        08740001
-           MOVE ANX-CENTRAL TO W-NUE-CENTRAL                            08750001
-           EVALUATE ANX-IND-FILE                                        08760001
-             WHEN '1'  MOVE SLD-CORASU   TO W-NUE-CORASU                08770001
-             WHEN '2'  MOVE PDT-CORASU   TO W-NUE-CORASU                08780001
+      *ANX13-CLI --> I                                                  08741003
+      * SE COMENTA: QUIEBRE POR CLIENTE + CORASU Y SU AVISO DE ERROR    08742003
+      *             (YA NO SE CONSIDERA)                                08743003
+      *    MOVE ANX-CENTRAL TO W-NUE-CENTRAL                            08750003
+      *    EVALUATE ANX-IND-FILE                                        08760003
+      *      WHEN '1'  MOVE SLD-CORASU   TO W-NUE-CORASU                08770003
+      *      WHEN '2'  MOVE PDT-CORASU   TO W-NUE-CORASU                08780003
       *200902167-I                                                      08790001
       *      WHEN '3'  MOVE 'F00'        TO W-NUE-CORASU                08800001
       *200902167-F                                                      08810001
-           END-EVALUATE                                                 08820001
-065000     IF W-CLAVE-N NOT = W-CLAVE-A     OR                          08830001
-065100       (ANX-CENTRAL = '00000000'      OR                          08840001
-065200        ANX-CENTRAL = SPACES)                                     08850001
-              IF W-ANT-CENTRAL = W-NUE-CENTRAL                          08860001
-                 DISPLAY 'ERROR CLIENTE - CORASUS: ' W-ANT-CENTRAL      08870001
-              END-IF                                                    08880001
+      *    END-EVALUATE                                                 08820003
+065000*    IF W-CLAVE-N NOT = W-CLAVE-A     OR                          08830003
+065100*      (ANX-CENTRAL = '00000000'      OR                          08840003
+065200*       ANX-CENTRAL = SPACES)                                     08850003
+      *       IF W-ANT-CENTRAL = W-NUE-CENTRAL                          08860003
+      *          DISPLAY 'ERROR CLIENTE - CORASUS: ' W-ANT-CENTRAL      08870003
+      *       END-IF                                                    08880003
+      * SE AGREGA: QUIEBRE SOLO POR CLIENTE (ANX-CENTRAL)               08881003
+           IF ANX-CENTRAL NOT = W-ANT-CENTRAL OR                        08882003
+             (ANX-CENTRAL = '00000000'      OR                          08883003
+              ANX-CENTRAL = SPACES)                                     08884003
+      *ANX13-CLI <-- F                                                  08885003
 065300        IF SW-SI-ACUMULA                                          08890001
 065400           PERFORM 00235-QUIEBRE-CENTRAL                          08900001
 065500        END-IF                                                    08910001
