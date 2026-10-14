@@ -1,0 +1,12 @@
+Hola Consuelo,
+
+Revisando el Anexo 13 (Distribución de los depósitos según escala de montos), encontramos que el reporte agrupa los saldos por cliente y CORASU. Por eso, si un mismo cliente tiene cuentas con CORASU distintos, el reporte lo cuenta como si fueran clientes diferentes y reparte su saldo entre ellos.
+
+Por ejemplo, un cliente con S/ 1,000 en cuenta corriente (CORASU F00) y S/ 990 en una cuenta a plazo (CORASU F01) aparece como 2 clientes, cuando debería ser 1 cliente con S/ 1,990.
+
+Nuestra propuesta es agrupar solo por cliente. Para confirmarlo, te consulto:
+
+¿Es posible que un mismo cliente (código central) tenga cuentas con más de un CORASU?
+Si es así, ¿esos CORASU pueden corresponder a tipos de persona distintos? Por ejemplo, persona natural en una cuenta y persona jurídica en otra.
+
+Gracias,
