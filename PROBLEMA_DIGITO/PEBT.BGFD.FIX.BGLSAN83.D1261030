@@ -1,0 +1,45 @@
+      SUPERINTENDENCIA DE BANCA Y SEGUROS
+                                INSTITUCION: BANCO BBVA PERU         CODIGO: 011                        ANEXO N.13
+                                        DEPOSITOS SEGUN ESCALA DE MONTOS
+                                           AL 30 DE  OCTUBRE  DE 2026
+ BG3C3170                                       (EN SOLES)
+;ESCALAS;PRODUCTO;MONEDA;NRO-PN;MONTO-PN;NRO-SFL;MONTO-SFL;NRO-CFL;MONTO-CFL;NRO-TOT;MONTO-TOT;
+;DE         0.00 A     1,009.00;      CHEQUES CERTIFICADOS ;PEN;     29;      17,465.61;      1;          61.60;     20;       3,760.95;      50;      21,288.16;
+;DE     1,010.00 A     3,026.00;      CHEQUES CERTIFICADOS ;PEN;     25;      49,184.89;      0;           0.00;      4;       8,160.00;      29;      57,344.89;
+;DE     3,027.00 A     5,043.00;      CHEQUES CERTIFICADOS ;PEN;      2;       9,500.00;      0;           0.00;      3;      12,357.92;       5;      21,857.92;
+;DE     5,044.00 A    10,086.00;      CHEQUES CERTIFICADOS ;PEN;      3;      20,752.00;      0;           0.00;      1;       8,436.00;       4;      29,188.00;
+;DE    10,087.00 A    25,216.00;      CHEQUES CERTIFICADOS ;PEN;      0;           0.00;      0;           0.00;      1;      19,416.80;       1;      19,416.80;
+;DE    25,217.00 A    50,432.00;      CHEQUES CERTIFICADOS ;PEN;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE    50,433.00 A   100,864.00;      CHEQUES CERTIFICADOS ;PEN;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE   100,865.00 A   201,728.00;      CHEQUES CERTIFICADOS ;PEN;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE   201,729.00 A   403,456.00;      CHEQUES CERTIFICADOS ;PEN;      1;     210,000.00;      0;           0.00;      0;           0.00;       1;     210,000.00;
+;DE   403,457.00 A   605,184.00;      CHEQUES CERTIFICADOS ;PEN;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE   605,185.00 A   806,912.00;      CHEQUES CERTIFICADOS ;PEN;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE   806,913.00 A 1,008,640.00;      CHEQUES CERTIFICADOS ;PEN;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE 1,008,641.00 A 1,512,960.00;      CHEQUES CERTIFICADOS ;PEN;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE 1,512,961.00 A 2,017,280.00;      CHEQUES CERTIFICADOS ;PEN;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE 2,017,281.00 A MAS         ;      CHEQUES CERTIFICADOS ;PEN;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE 5,043,201.00 A    86,400.00;      CHEQUES CERTIFICADOS ;PEN;      1;   9,999,999.00;      0;           0.00;      0;           0.00;       1;   9,999,999.00;
+;DE    86,401.00 A 9,999,999.99;      CHEQUES CERTIFICADOS ;PEN;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;           0.00   TOTALES     ;                           ;   ;     61;  10,306,901.50;      1;          61.60;     29;      52,131.67;      91;  10,359,094.77;
+;DE         0.00 A     1,009.00;      CHEQUES CERTIFICADOS ;USD;      2;       1,333.87;      0;           0.00;      3;         576.60;       5;       1,910.47;
+;DE     1,010.00 A     3,026.00;      CHEQUES CERTIFICADOS ;USD;      2;       3,674.86;      0;           0.00;      0;           0.00;       2;       3,674.86;
+;DE     3,027.00 A     5,043.00;      CHEQUES CERTIFICADOS ;USD;      2;       7,638.03;      0;           0.00;      1;       4,881.88;       3;      12,519.91;
+;DE     5,044.00 A    10,086.00;      CHEQUES CERTIFICADOS ;USD;      2;      17,382.57;      0;           0.00;      3;      25,380.20;       5;      42,762.77;
+;DE    10,087.00 A    25,216.00;      CHEQUES CERTIFICADOS ;USD;      0;           0.00;      0;           0.00;      1;      12,075.96;       1;      12,075.96;
+;DE    25,217.00 A    50,432.00;      CHEQUES CERTIFICADOS ;USD;      1;      38,440.00;      0;           0.00;      0;           0.00;       1;      38,440.00;
+;DE    50,433.00 A   100,864.00;      CHEQUES CERTIFICADOS ;USD;      2;     111,476.00;      0;           0.00;      0;           0.00;       2;     111,476.00;
+;DE   100,865.00 A   201,728.00;      CHEQUES CERTIFICADOS ;USD;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE   201,729.00 A   403,456.00;      CHEQUES CERTIFICADOS ;USD;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE   403,457.00 A   605,184.00;      CHEQUES CERTIFICADOS ;USD;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE   605,185.00 A   806,912.00;      CHEQUES CERTIFICADOS ;USD;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE   806,913.00 A 1,008,640.00;      CHEQUES CERTIFICADOS ;USD;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE 1,008,641.00 A 1,512,960.00;      CHEQUES CERTIFICADOS ;USD;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE 1,512,961.00 A 2,017,280.00;      CHEQUES CERTIFICADOS ;USD;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE 2,017,281.00 A MAS         ;      CHEQUES CERTIFICADOS ;USD;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE 5,043,201.00 A    86,400.00;      CHEQUES CERTIFICADOS ;USD;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;DE    86,401.00 A 9,999,999.99;      CHEQUES CERTIFICADOS ;USD;      0;           0.00;      0;           0.00;      0;           0.00;       0;           0.00;
+;           0.00   TOTALES     ;                           ;   ;     11;     179,945.33;      0;           0.00;      8;      42,914.64;      19;     222,859.97;
+;TOTAL EN MONEDA DE ORIGEN           317.94
+;TIPO DE CAMBIO S.B.S. USADO       3.844000
+

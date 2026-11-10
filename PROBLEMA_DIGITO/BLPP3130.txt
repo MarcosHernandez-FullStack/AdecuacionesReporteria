@@ -1,0 +1,428 @@
+//BLPP3130 PROC                                                         00010000
+//*--------------------------------------------------------------------*00011000
+//* SORT    SEPARA ARCHIVO POR TIPO DE PRODUCTO                        *00012000
+//*--------------------------------------------------------------------*00013000
+//BL313015  EXEC  PGM=ICEMAN,COND=(4,LT)                                00014000
+//SYSOUT    DD SYSOUT=*                                                 00015000
+//*SORTIN    DD DSN=PEB&AMB..BGFD.FIX.BG32TEM5.D1&FECHA,                00019400
+//SORTIN    DD DSN=PEB&AMB..BGFD.FIX.BG32TE01.D1&FECHA,                 00019500
+//          DISP=SHR,DCB=(BUFNO=20)                                     00019600
+//SORTOUT   DD DSN=PEB&AMB..BGFD.FIX.BG313001.D1&FECHA,                 00019700
+//             UNIT=3390,                                               00019800
+//             DISP=(NEW,CATLG,DELETE),                                 00019900
+//             SPACE=(CYL,(500,250),RLSE),                              00020000
+//             DCB=(RECFM=FB,LRECL=280,BLKSIZE=0,DSORG=PS)              00020100
+//SYSIN    DD  DSN=MBVP.ALTAMIRA.PARMLIB(BL313015),DISP=SHR             00021000
+//*--------------------------------------------------------------------*00023900
+//* SORT    SEPARA ARCHIVO POR TIPO DE PRODUCTO                        *00024000
+//*--------------------------------------------------------------------*00024100
+//BL313010  EXEC  PGM=ICEMAN,COND=(4,LT)                                00024200
+//SYSOUT    DD SYSOUT=*                                                 00024300
+//*SORTIN    DD DSN=PEB&AMB..BGFD.FIX.BG32TEM5.D1&FECHA,                00025100
+//SORTIN    DD DSN=PEB&AMB..BGFD.FIX.BG32TE01.D1&FECHA,                 00025200
+//          DISP=SHR,DCB=(BUFNO=20)                                     00025300
+//SORTOUT   DD DSN=PEB&AMB..BGFD.FIX.BG313002.D1&FECHA,                 00025800
+//             UNIT=3390,                                               00025900
+//             DISP=(NEW,CATLG,DELETE),                                 00026000
+//             SPACE=(CYL,(500,250),RLSE),                              00026100
+//             DCB=(RECFM=FB,LRECL=280,BLKSIZE=0,DSORG=PS)              00026200
+//SYSIN    DD  DSN=MBVP.ALTAMIRA.PARMLIB(BL313010),DISP=SHR             00026304
+//*---------------------------------------------------------------------00027000
+//*- CREACION DE SYSTSIN PARA     PRG BG3C3130                          00030000
+//*---------------------------------------------------------------------00040000
+//S0051S  EXEC PGM=QU3CSTS,PARM=('&AMB,BG3C3130,&FECHA,'),              00050000
+//        COND=(4,LT)                                                   00051000
+//E1DQDAE0  DD DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                00060000
+//SYSTSIN   DD DISP=(NEW,PASS),UNIT=3390,                               00070000
+//             SPACE=(CYL,(1,1),RLSE),RECFM=FB,LRECL=100                00081000
+//IGZSRTCD DD  DUMMY                                                    00090000
+//*                                                                     00100000
+//**********************************************************************00110000
+//********* EJECUCION DEL PROGRAMA  BG3C3130  ANEXO-2 ******************00120000
+//**********************************************************************00130000
+//BGL31309 EXEC  PGM=IKJEFT01,COND=(4,LT),                              00140000
+//             REGION=4M,                                               00150000
+//             DYNAMNBR=20                                              00160000
+//QRLSDB2  DD  SYSOUT=*                                                 00170000
+//S1DQ0000 DD  SYSOUT=*                                                 00180000
+//SYSPRINT DD  SYSOUT=*                                                 00190000
+//SYSOUT   DD  SYSOUT=*                                                 00200000
+//SYSABOUT DD  SYSOUT=*                                                 00210000
+//SYSDBOUT DD  SYSOUT=*                                                 00220000
+//SYSTSPRT DD  SYSOUT=*                                                 00230000
+//S1DLINC0 DD  SYSOUT=*                                                 00240000
+//SYSIN    DD  DUMMY                                                    00250000
+//SYSTSIN  DD  DSN=*.S0051S.SYSTSIN,DISP=(OLD,DELETE,DELETE)            00260000
+//TCDF0000 DD  DSN=PEBP.TCFD.VSL.TCDF0001,DISP=SHR                      00270000
+//E1DQDAE0 DD  DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                00280000
+//EMESACTU DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESACTU),DISP=SHR             00290000
+//EMESANTI DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESANTI),DISP=SHR             00300000
+//E1DQSLD0 DD  DSN=PEB&AMB..BGFD.FIX.MAESALDO.D1&FECHA,DISP=SHR         00310000
+//BGLSANX2 DD  DSN=PEB&AMB..BGFD.FIX.BGLSANX2.D1&FECHA,                 00320000
+//             DISP=(NEW,CATLG,CATLG),                                  00330000
+//             UNIT=3390,                                               00340000
+//             SPACE=(CYL,(1,1),RLSE),                                  00350000
+//             LRECL=133,RECFM=FB,                                      00360000
+//             BLKSIZE=0                                                00370000
+//*                                                                     00380000
+//**********************************************************************00390000
+//* - PASO A CONTROL D -                                                00400000
+//**********************************************************************00410000
+//BGL31308 EXEC  PGM=ICEGENER,COND=(0,NE)                               00420000
+//SYSUT1   DD DSN=PEB&AMB..BGFD.FIX.BGLSANX2.D1&FECHA,DISP=SHR          00430000
+//SYSUT2   DD   SYSOUT=*                                                00440000
+//SYSPRINT DD   SYSOUT=*                                                00450000
+//SYSIN    DD   DUMMY                                                   00460000
+//*---------------------------------------------------------------------00470000
+//*- CREACION DE SYSTSIN PARA     PRG BG3C3120                          00480000
+//*---------------------------------------------------------------------00490000
+//S0052S  EXEC PGM=QU3CSTS,PARM=('&AMB,BG3C3120,&FECHA,'),              00500000
+//        COND=(4,LT)                                                   00501000
+//E1DQDAE0  DD DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                00510000
+//SYSTSIN   DD DISP=(NEW,PASS),UNIT=3390,                               00520000
+//             SPACE=(CYL,(1,1),RLSE),RECFM=FB,LRECL=100                00531000
+//IGZSRTCD DD  DUMMY                                                    00540000
+//*                                                                     00550000
+//**********************************************************************00560000
+//********* EJECUCION DEL PROGRAMA  BG3C3120  ANEXO-3 ******************00570000
+//**********************************************************************00580000
+//BGL31307 EXEC  PGM=IKJEFT01,COND=(4,LT),                              00590000
+//             REGION=4M,                                               00600000
+//             DYNAMNBR=20                                              00610000
+//QRLSDB2  DD  SYSOUT=*                                                 00620000
+//S1DQ0000 DD  SYSOUT=*                                                 00630000
+//SYSPRINT DD  SYSOUT=*                                                 00640000
+//SYSOUT   DD  SYSOUT=*                                                 00650000
+//SYSABOUT DD  SYSOUT=*                                                 00660000
+//SYSDBOUT DD  SYSOUT=*                                                 00670000
+//SYSTSPRT DD  SYSOUT=*                                                 00680000
+//S1DLINC0 DD  SYSOUT=*                                                 00690000
+//SYSIN    DD  DUMMY                                                    00700000
+//SYSTSIN  DD  DSN=*.S0052S.SYSTSIN,DISP=(OLD,DELETE,DELETE)            00710000
+//TCDF0000 DD  DSN=PEBP.TCFD.VSL.TCDF0001,DISP=SHR                      00720000
+//E1DQDAE0 DD  DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                00730000
+//EMESACTU DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESACTU),DISP=SHR             00740000
+//EMESANTI DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESANTI),DISP=SHR             00750000
+//SYS011   DD  DSN=PEB&AMB..BGFD.FIX.MAESALDO.D1&FECHA,DISP=SHR         00760000
+//LISTADO  DD  DSN=PEB&AMB..BGFD.FIX.BGLSANX3.D1&FECHA,                 00770000
+//             DISP=(NEW,CATLG,CATLG),                                  00780000
+//             UNIT=3390,                                               00790000
+//             SPACE=(CYL,(1,1),RLSE),                                  00800000
+//             LRECL=133,RECFM=FB,                                      00810000
+//             BLKSIZE=0                                                00820000
+//S1DQSLD  DD  DSN=PEB&AMB..BGFD.FIX.BGANEX3A.D1&FECHA,                 00821000
+//             DISP=(NEW,CATLG,DELETE),                                 00822000
+//             UNIT=3390,BLKSIZE=0,                                     00823000
+//             SPACE=(CYL,(50,10),RLSE),                                00824000
+//             LRECL=78,RECFM=FB                                        00825000
+//*                                                                     00830000
+//**********************************************************************00840000
+//* - PASO A CONTROL D -                                                00850000
+//**********************************************************************00860000
+//BGL31306 EXEC  PGM=ICEGENER,COND=(0,NE)                               00870000
+//SYSUT1   DD DSN=PEB&AMB..BGFD.FIX.BGLSANX3.D1&FECHA,DISP=SHR          00880000
+//SYSUT2   DD   SYSOUT=*                                                00890000
+//SYSPRINT DD   SYSOUT=*                                                00900000
+//SYSIN    DD   DUMMY                                                   00910000
+//*---------------------------------------------------------------------00920000
+//*- CREACION DE SYSTSIN PARA     PRG BG3C3150                          00930000
+//*---------------------------------------------------------------------00940000
+//S0053S  EXEC PGM=QU3CSTS,PARM=('&AMB,BG3C3150,&FECHA,'),              00950000
+//        COND=(4,LT)                                                   00951000
+//E1DQDAE0  DD DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                00960000
+//SYSTSIN   DD DISP=(NEW,PASS),UNIT=3390,                               00970000
+//             SPACE=(CYL,(1,1),RLSE),RECFM=FB,LRECL=100                00981000
+//IGZSRTCD DD  DUMMY                                                    00990000
+//*                                                                     01000000
+//**********************************************************************01010000
+//********* EJECUCION DEL PROGRAMA  BG3C3150  ANEXO-8 ******************01020000
+//**********************************************************************01030000
+//BGL31305 EXEC  PGM=IKJEFT01,COND=(4,LT),                              01040000
+//             REGION=4M,                                               01050000
+//             DYNAMNBR=20                                              01060000
+//QRLSDB2  DD  SYSOUT=*                                                 01070000
+//S1DQ0000 DD  SYSOUT=*                                                 01080000
+//SYSPRINT DD  SYSOUT=*                                                 01090000
+//SYSOUT   DD  SYSOUT=*                                                 01100000
+//SYSABOUT DD  SYSOUT=*                                                 01110000
+//SYSDBOUT DD  SYSOUT=*                                                 01120000
+//SYSTSPRT DD  SYSOUT=*                                                 01130000
+//S1DLINC0 DD  SYSOUT=*                                                 01140000
+//SYSIN    DD  DUMMY                                                    01150000
+//SYSTSIN  DD  DSN=*.S0053S.SYSTSIN,DISP=(OLD,DELETE,DELETE)            01160000
+//TCDF0000 DD  DSN=PEBP.TCFD.VSL.TCDF0001,DISP=SHR                      01170000
+//E1DQDAE0 DD  DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                01180000
+//* LRINICIO---                                                         01180100
+//E1CORASU DD  DSN=PEBP.BGFD.FIX.SORT.BGDTTAB.D1&FECHA,DISP=SHR         01181000
+//* LRFIN---                                                            01182000
+//EMESACTU DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESACTU),DISP=SHR             01190000
+//EMESANTI DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESANTI),DISP=SHR             01200000
+//E1DQSLD0 DD  DSN=PEB&AMB..BGFD.FIX.BG313001.D1&FECHA,DISP=SHR         01221000
+//BGLSANX8 DD  DSN=PEB&AMB..BGFD.FIX.BGLSAN81.D1&FECHA,                 01230000
+//             DISP=(NEW,CATLG,CATLG),                                  01240000
+//             UNIT=3390,                                               01250000
+//             SPACE=(CYL,(1,1),RLSE),                                  01260000
+//             LRECL=191,RECFM=FB,                                      01270015
+//             BLKSIZE=0                                                01280000
+//S2DQAX80  DD DSN=PEB&AMB..BGFD.FIX.BGLSAN8Z.D1&FECHA,                 01281006
+//             DISP=(NEW,CATLG,CATLG),                                  01282000
+//             UNIT=3390,                                               01283000
+//             SPACE=(CYL,(1,1),RLSE),                                  01284000
+//             LRECL=171,RECFM=FB,                                      01285015
+//             BLKSIZE=0                                                01286000
+//*                                                                     01290000
+//**********************************************************************01300000
+//* - PASO A CONTROL D -                                                01310000
+//**********************************************************************01320000
+//BGL31304 EXEC  PGM=ICEGENER,COND=(0,NE)                               01330000
+//SYSUT1   DD DSN=PEB&AMB..BGFD.FIX.BGLSAN81.D1&FECHA,DISP=SHR          01340000
+//SYSUT2   DD   SYSOUT=*                                                01350000
+//SYSPRINT DD   SYSOUT=*                                                01360000
+//SYSIN    DD   DUMMY                                                   01370000
+//*---------------------------------------------------------------------01380000
+//*- CREACION DE SYSTSIN PARA     PRG BG3C3160                          01390000
+//*---------------------------------------------------------------------01400000
+//S0054S  EXEC PGM=QU3CSTS,PARM=('&AMB,BG3C3160,&FECHA,'),              01410000
+//        COND=(4,LT)                                                   01411000
+//E1DQDAE0  DD DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                01420000
+//SYSTSIN   DD DISP=(NEW,PASS),UNIT=3390,                               01430000
+//             SPACE=(CYL,(1,1),RLSE),RECFM=FB,LRECL=100                01441000
+//IGZSRTCD DD  DUMMY                                                    01450000
+//*                                                                     01460000
+//**********************************************************************01470000
+//********* EJECUCION DEL PROGRAMA  BG3C3160  ANEXO-8 IF ***************01480000
+//**********************************************************************01490000
+//BGL31303 EXEC  PGM=IKJEFT01,COND=(4,LT),                              01500000
+//             REGION=4M,                                               01510000
+//             DYNAMNBR=20                                              01520000
+//QRLSDB2  DD  SYSOUT=*                                                 01530000
+//S1DQ0000 DD  SYSOUT=*                                                 01540000
+//SYSPRINT DD  SYSOUT=*                                                 01550000
+//SYSOUT   DD  SYSOUT=*                                                 01560000
+//SYSABOUT DD  SYSOUT=*                                                 01570000
+//SYSDBOUT DD  SYSOUT=*                                                 01580000
+//SYSTSPRT DD  SYSOUT=*                                                 01590000
+//S1DLINC0 DD  SYSOUT=*                                                 01600000
+//SYSIN    DD  DUMMY                                                    01610000
+//SYSTSIN  DD  DSN=*.S0054S.SYSTSIN,DISP=(OLD,DELETE,DELETE)            01620000
+//TCDF0000 DD  DSN=PEBP.TCFD.VSL.TCDF0001,DISP=SHR                      01630000
+//E1DQDAE0 DD  DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                01640000
+//EMESACTU DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESACTU),DISP=SHR             01650000
+//*MESANTI DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESANTI),DISP=SHR             01660010
+//E1CORASU DD  DISP=SHR,DSN=PEBP.BGFD.FIX.SORT.BGDTTAB.D1&FECHA         01670012
+//E1DQSLD0 DD  DSN=PEB&AMB..BGFD.FIX.BG313001.D1&FECHA,DISP=SHR         01681000
+//BGLSANX8 DD  DSN=PEB&AMB..BGFD.FIX.BGLSAN82.D1&FECHA,                 01690000
+//             DISP=(NEW,CATLG,CATLG),                                  01700000
+//             UNIT=3390,                                               01710000
+//             SPACE=(CYL,(1,1),RLSE),                                  01720000
+//             LRECL=179,RECFM=FB,                                      01730014
+//             BLKSIZE=0                                                01740000
+//S2DQAX80 DD  DSN=PEB&AMB..BGFD.FIX.BGLSAN8B.D1&FECHA,                 01741000
+//             DISP=(NEW,CATLG,CATLG),                                  01742000
+//             UNIT=3390,                                               01743000
+//             SPACE=(CYL,(1,1),RLSE),                                  01744000
+//             LRECL=163,RECFM=FB,                                      01745000
+//             BLKSIZE=0                                                01746000
+//*                                                                     01750000
+//**********************************************************************01760000
+//* - PASO A CONTROL D -                                                01770000
+//**********************************************************************01780000
+//BGL31302 EXEC  PGM=ICEGENER,COND=(0,NE)                               01790000
+//SYSUT1   DD DSN=PEB&AMB..BGFD.FIX.BGLSAN82.D1&FECHA,DISP=SHR          01800000
+//SYSUT2   DD   SYSOUT=*                                                01810000
+//SYSPRINT DD   SYSOUT=*                                                01820000
+//SYSIN    DD   DUMMY                                                   01830000
+//*---------------------------------------------------------------------01840000
+//*- CREACION DE SYSTSIN PARA     PRG BG3C3170                          01850000
+//*---------------------------------------------------------------------01860000
+//S0055S  EXEC PGM=QU3CSTS,PARM=('&AMB,BG3C3170,&FECHA,'),              01870000
+//        COND=(4,LT)                                                   01871000
+//E1DQDAE0  DD DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                01880000
+//SYSTSIN   DD DISP=(NEW,PASS),UNIT=3390,                               01890000
+//             SPACE=(CYL,(1,1),RLSE),RECFM=FB,LRECL=100                01901000
+//IGZSRTCD DD  DUMMY                                                    01910000
+//*                                                                     01920000
+//**********************************************************************01930000
+//********* EJECUCION DEL PROGRAMA  BG3C3170  ANEXO-8 CHEQUES CERTIFI***01940000
+//**********************************************************************01950000
+//BGL31301 EXEC  PGM=IKJEFT01,COND=(4,LT),                              01960000
+//             REGION=4M,                                               01970000
+//             DYNAMNBR=20                                              01980000
+//QRLSDB2  DD  SYSOUT=*                                                 01990000
+//S1DQ0000 DD  SYSOUT=*                                                 02000000
+//SYSPRINT DD  SYSOUT=*                                                 02010000
+//SYSOUT   DD  SYSOUT=*                                                 02020000
+//SYSABOUT DD  SYSOUT=*                                                 02030000
+//SYSDBOUT DD  SYSOUT=*                                                 02040000
+//SYSTSPRT DD  SYSOUT=*                                                 02050000
+//S1DLINC0 DD  SYSOUT=*                                                 02060000
+//SYSIN    DD  DUMMY                                                    02070000
+//SYSTSIN  DD  DSN=*.S0055S.SYSTSIN,DISP=(OLD,DELETE,DELETE)            02080000
+//TCDF0000 DD  DSN=PEBP.TCFD.VSL.TCDF0001,DISP=SHR                      02090000
+//E1DQDAE0 DD  DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                02100000
+//EMESACTU DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESACTU),DISP=SHR             02110000
+//EMESANTI DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESANTI),DISP=SHR             02120000
+//E1DQSLD0 DD  DSN=PEB&AMB..BGFD.FIX.BG313002.D1&FECHA,DISP=SHR         02131000
+//BGLSANX8 DD  DSN=PEB&AMB..BGFD.FIX.BGLSAN83.D1&FECHA,                 02140000
+//             DISP=(NEW,CATLG,CATLG),                                  02150000
+//             UNIT=3390,                                               02160000
+//             SPACE=(CYL,(1,1),RLSE),                                  02170000
+//             LRECL=164,RECFM=FB,                                      02180000
+//             BLKSIZE=0                                                02190000
+//S2DQAX80 DD  DSN=PEB&AMB..BGFD.FIX.BGLSAN8C.D1&FECHA,                 02191000
+//             DISP=(NEW,CATLG,CATLG),                                  02192000
+//             UNIT=3390,                                               02193000
+//             SPACE=(CYL,(1,1),RLSE),                                  02194000
+//             LRECL=163,RECFM=FB,                                      02195000
+//             BLKSIZE=0                                                02196000
+//*                                                                     02200000
+//**********************************************************************02210000
+//* - PASO A CONTROL D -                                                02220000
+//**********************************************************************02230000
+//BGL31300 EXEC  PGM=ICEGENER,COND=(0,NE)                               02240000
+//SYSUT1   DD DSN=PEB&AMB..BGFD.FIX.BGLSAN83.D1&FECHA,DISP=SHR          02250000
+//SYSUT2   DD   SYSOUT=*                                                02260000
+//SYSPRINT DD   SYSOUT=*                                                02270000
+//SYSIN    DD   DUMMY                                                   02280000
+//*---------------------------------------------------------------------02290000
+//*- CREACION DE SYSTSIN PARA     PRG BG3C3150 AHORRO VIVIENDA          02300000
+//*---------------------------------------------------------------------02310000
+//S0056S  EXEC PGM=QU3CSTS,PARM=('&AMB,BG3C3150,&FECHA.I'),             02320000
+//        COND=(4,LT)                                                   02321000
+//E1DQDAE0  DD DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                02330000
+//SYSTSIN   DD DISP=(NEW,PASS),UNIT=3390,                               02340000
+//             SPACE=(CYL,(1,1),RLSE),RECFM=FB,LRECL=100                02351000
+//IGZSRTCD DD  DUMMY                                                    02360000
+//*                                                                     02370000
+//**********************************************************************02380000
+//********* EJECUCION DEL PROGRAMA  BG3C3150  ANEXO-8 ******************02390000
+//**********************************************************************02400000
+//BGL3130A EXEC  PGM=IKJEFT01,COND=(4,LT),                              02410000
+//             REGION=4M,                                               02420000
+//             DYNAMNBR=20                                              02430000
+//QRLSDB2  DD  SYSOUT=*                                                 02440000
+//S1DQ0000 DD  SYSOUT=*                                                 02450000
+//SYSPRINT DD  SYSOUT=*                                                 02460000
+//SYSOUT   DD  SYSOUT=*                                                 02470000
+//SYSABOUT DD  SYSOUT=*                                                 02480000
+//SYSDBOUT DD  SYSOUT=*                                                 02490000
+//SYSTSPRT DD  SYSOUT=*                                                 02500000
+//S1DLINC0 DD  SYSOUT=*                                                 02510000
+//SYSIN    DD  DUMMY                                                    02520000
+//SYSTSIN  DD  DSN=*.S0056S.SYSTSIN,DISP=(OLD,DELETE,DELETE)            02530000
+//TCDF0000 DD  DSN=PEBP.TCFD.VSL.TCDF0001,DISP=SHR                      02540000
+//E1DQDAE0 DD  DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                02550000
+//* LRINICIO---                                                         02551004
+//E1CORASU DD  DSN=PEBP.BGFD.FIX.SORT.BGDTTAB.D1&FECHA,DISP=SHR         02552004
+//* LRFIN---                                                            02553004
+//EMESACTU DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESACTU),DISP=SHR             02560000
+//EMESANTI DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESANTI),DISP=SHR             02570000
+//E1DQSLD0 DD  DSN=PEB&AMB..BGFD.FIX.BG313001.D1&FECHA,DISP=SHR         02591000
+//*PSDAEMF2-446-INI                                                     02592000
+//*BGLSANX8 DD  SYSOUT=*2FCB=H001                                       02600000
+//BGLSANX8 DD  DSN=PEB&AMB..BGFD.FIX.BGLSAN84.D1&FECHA,                 02610000
+//             DISP=(NEW,CATLG,CATLG),                                  02620000
+//             UNIT=3390,                                               02630000
+//             SPACE=(CYL,(1,1),RLSE),                                  02640000
+//             RECFM=FB,                                                02650000
+//             BLKSIZE=0                                                02651000
+//*PSDAEMF2-446-FIN                                                     02652000
+//S2DQAX80 DD  DUMMY                                                    02660000
+//*                                                                     02710000
+//*---------------------------------------------------------------------02711000
+//*- CREACION DE SYSTSIN PARA     PRG BG3C3160  AHORRO VIVIENDA         02720000
+//*---------------------------------------------------------------------02730000
+//S0057S  EXEC PGM=QU3CSTS,PARM=('&AMB,BG3C3160,&FECHA.I'),             02740000
+//        COND=(4,LT)                                                   02741000
+//E1DQDAE0  DD DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                02750000
+//SYSTSIN   DD DISP=(NEW,PASS),UNIT=3390,                               02760000
+//             SPACE=(CYL,(1,1),RLSE),RECFM=FB,LRECL=100                02771000
+//IGZSRTCD DD  DUMMY                                                    02780000
+//*                                                                     02790000
+//**********************************************************************02800000
+//********* EJECUCION DEL PROGRAMA  BG3C3160 AHORRO VIVIENDA ***********02810000
+//**********************************************************************02820000
+//BGL3130B EXEC  PGM=IKJEFT01,COND=(4,LT),                              02830004
+//             REGION=4M,                                               02840000
+//             DYNAMNBR=20                                              02850000
+//QRLSDB2  DD  SYSOUT=*                                                 02860000
+//S1DQ0000 DD  SYSOUT=*                                                 02870000
+//SYSPRINT DD  SYSOUT=*                                                 02880000
+//SYSOUT   DD  SYSOUT=*                                                 02890000
+//SYSABOUT DD  SYSOUT=*                                                 02900000
+//SYSDBOUT DD  SYSOUT=*                                                 02910000
+//SYSTSPRT DD  SYSOUT=*                                                 02920000
+//S1DLINC0 DD  SYSOUT=*                                                 02930000
+//SYSIN    DD  DUMMY                                                    02940000
+//SYSTSIN  DD  DSN=*.S0057S.SYSTSIN,DISP=(OLD,DELETE,DELETE)            02950000
+//TCDF0000 DD  DSN=PEBP.TCFD.VSL.TCDF0001,DISP=SHR                      02960000
+//E1DQDAE0 DD  DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                02970000
+//*MESACTU DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESACTU),DISP=SHR             02980010
+//*MESANTI DD  DSN=&AMB.L$$Q.XS2.EMESAXX(EMESANTI),DISP=SHR             02990010
+//E1CORASU DD  DISP=SHR,DSN=PEBP.BGFD.FIX.SORT.BGDTTAB.D1&FECHA         03000009
+//E1DQSLD0 DD  DSN=PEB&AMB..BGFD.FIX.BG313001.D1&FECHA,DISP=SHR         03011000
+//*PSDAEMF2-446-INI                                                     03030000
+//*BGLSANX8 DD  SYSOUT=*2FCB=H001                                       03040000
+//BGLSANX8 DD  DSN=PEB&AMB..BGFD.FIX.BGLSAN85.D1&FECHA,                 03050000
+//             DISP=(NEW,CATLG,CATLG),                                  03060000
+//             UNIT=3390,                                               03070000
+//             SPACE=(CYL,(1,1),RLSE),                                  03071000
+//             RECFM=FB,                                                03072000
+//             BLKSIZE=0                                                03073000
+//*PSDAEMF2-446-FIN                                                     03074000
+//S2DQAX80 DD  DUMMY                                                    03080000
+//*                                                                     03090004
+//*---------------------------------------------------------------------03100004
+//*- BG3C3100 RETENCIONES JUDICIALES SYSTSIN Y EJECUCION                03110004
+//*---------------------------------------------------------------------03120004
+//S0058S  EXEC PGM=QU3CSTS,PARM=('&AMB,BG3C3100,&FECHA,RJ'),            03130017
+//        COND=(4,LT)                                                   03131004
+//E1DQDAE0  DD DSN=PEBP.QGFD.FIX.A000DAE0.X0000,DISP=SHR                03132004
+//SYSTSIN   DD DISP=(NEW,PASS),UNIT=3390,                               03133004
+//             SPACE=(CYL,(1,1),RLSE),RECFM=FB,LRECL=100                03134004
+//IGZSRTCD DD  DUMMY                                                    03135004
+//************************************************************          03136004
+//BGL3130C EXEC  PGM=IKJEFT01,COND=(4,LT),                              03139104
+//             REGION=4M,                                               03139204
+//             DYNAMNBR=20                                              03139304
+//QRLSDB2  DD  SYSOUT=*                                                 03139404
+//S1DQ0000 DD  SYSOUT=*                                                 03139504
+//SYSPRINT DD  SYSOUT=*                                                 03139604
+//SYSOUT   DD  SYSOUT=*                                                 03139704
+//SYSABOUT DD  SYSOUT=*                                                 03139804
+//SYSDBOUT DD  SYSOUT=*                                                 03139904
+//SYSTSPRT DD  SYSOUT=*                                                 03140004
+//S1DLINC0 DD  SYSOUT=*                                                 03141004
+//SYSIN    DD  DUMMY                                                    03142004
+//SYSTSIN  DD  DSN=*.S0058S.SYSTSIN,DISP=(OLD,DELETE,DELETE)            03143004
+//TCDF0000 DD  DISP=SHR,DSN=PEBP.TCFD.VSL.TCDF0001                      03144004
+//E1DQDAE0 DD  DISP=SHR,DSN=PEBP.QGFD.FIX.A000DAE0.X0000                03145004
+//E1DQSLD0 DD  DISP=SHR,DSN=PEBP.BGFD.FIX.ANEXO13.RJEDATA.D1&FECHA      03148004
+//E1CORASU DD  DISP=SHR,DSN=PEBP.BGFD.FIX.SORT.BGDTTAB.D1&FECHA         03149004
+//BGLSANX8 DD  DSN=PEBP.BGFD.FIX.BGLSAN86.D1&FECHA,                     03149204
+//             DISP=(NEW,CATLG,CATLG),                                  03149304
+//             UNIT=3390,                                               03149404
+//             SPACE=(CYL,(1,1),RLSE),                                  03149504
+//             RECFM=FB,                                                03149604
+//             BLKSIZE=0                                                03149704
+//S2DQAX80  DD DSN=PEB&AMB..BGFD.FIX.BGLSAN8D.D1&FECHA,                 03150005
+//             DISP=(NEW,CATLG,CATLG),                                  03151005
+//             UNIT=3390,                                               03152005
+//             SPACE=(CYL,(1,1),RLSE),                                  03153005
+//             LRECL=171,RECFM=FB,                                      03154016
+//             BLKSIZE=0                                                03155005
+//***********************************************************           03156006
+//*   UNE ARCHIVOS DEPA                                                 03157006
+//***********************************************************           03158006
+//BGL3130D EXEC PGM=ICEMAN,COND=(4,LT)                                  03159006
+//SORTIN   DD DISP=SHR,DSN=PEBP.BGFD.FIX.BGLSAN8Z.D1&FECHA              03159106
+//         DD DISP=SHR,DSN=PEBP.BGFD.FIX.BGLSAN8D.D1&FECHA              03159207
+//SORTOUT  DD DSN=PEBP.BGFD.FIX.BGLSAN8A.D1&FECHA,                      03159307
+//            DISP=(NEW,CATLG,CATLG),UNIT=3390,                         03159406
+//            SPACE=(CYL,(1,1),RLSE),                                   03159606
+//            LRECL=171,RECFM=FB,                                       03159716
+//            BLKSIZE=0                                                 03159806
+//SYSOUT   DD SYSOUT=*                                                  03159907
+//SYSIN    DD DISP=SHR,DSN=MBVP.ALTAMIRA.PARMLIB(BLCOPY01)              03160007
+//******************    FIN   DE   JCL     ***********************      03170004
+
