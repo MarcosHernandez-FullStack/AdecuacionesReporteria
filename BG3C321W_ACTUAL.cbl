@@ -1148,7 +1148,7 @@ S57093    05 FILLER                     PIC X(01)  VALUE '|'.           04332012
 074800                                                                  10190001
 074900     IF I > 0 AND I < 20                                          10200001
       *SDA57093-2-I                                                     10210101
-      * SE ACUMULA EL IMPORTE SIN SIGNO PARA QUE SALGA EL PIE           10210201
+      * SE ACUMULA EL IMPORTE SIN SIGNO PARA QUE FIGURE EL PIE          10210201
 075000*       ADD  PDT-IMPORTE-PAG  TO ACU-IMPTME (I)                   10210301
               MOVE PDT-IMPORTE-PAG  TO W-IMPORTE-ABS                    10210401
               ADD  W-IMPORTE-ABS    TO ACU-IMPTME (I)                   10210501
