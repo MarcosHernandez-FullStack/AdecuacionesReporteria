@@ -40,6 +40,10 @@
       *              RETENCIONES JUDICIALES                            *00337005
       *              SE ELIMINA PUNTO Y COMA (;) AL INICIO Y FINAL     *00338005
       *              DE ARCHIVO Y SE REEMPLAZAN POR PALOTES            *00339008
+      *SDA57093-2    11NOV2026  XP79253   SE IMPRIME TOTAL EN MONEDA DE*00339101
+      *              ORIGEN Y TIPO DE CAMBIO S.B.S. USADO EN EL PIE DEL*00339102
+      *              REPORTE. SE ACUMULA EL IMPORTE SIN SIGNO          *00339103
+      *              (W-IMPORTE-ABS) EN ACU-IMPTME                     *00339104
 002100******************************************************************00340001
 002200                                                                  00350001
 002300 ENVIRONMENT DIVISION.                                            00360001
@@ -148,9 +152,9 @@
 010300 01 W-CEROS                       PIC 9(06)     VALUE 0    COMP-3.01350001
 010400 01 W-MENOS                       PIC 9(06)     VALUE 0    COMP-3.01360001
 010500 01 W-SOLES                       PIC 9(15)V99  VALUE 0    COMP-3.01370001
-      *ANX13-ME --> I                                                   01370101
+      *SDA57093-2-I                                                     01370101
        01 W-IMPORTE-ABS                 PIC 9(15)V99  VALUE 0    COMP-3.01370201
-      *ANX13-ME <-- F                                                   01370301
+      *SDA57093-2-F                                                     01370301
 010600 01 W-SALDO-CENTRAL               PIC 9(15)V99  VALUE 0    COMP-3.01380001
 010700 01 W-PAG                         PIC 999       VALUE 0.          01390001
 010800 01 II                            PIC 999       VALUE 0    COMP-3.01400001
@@ -1143,12 +1147,12 @@ S57093    05 FILLER                     PIC X(01)  VALUE '|'.           04332012
 074700     END-IF.                                                      10180001
 074800                                                                  10190001
 074900     IF I > 0 AND I < 20                                          10200001
-      *ANX13-ME --> I                                                   10210101
+      *SDA57093-2-I                                                     10210101
       * SE ACUMULA EL IMPORTE SIN SIGNO PARA QUE SALGA EL PIE           10210201
 075000*       ADD  PDT-IMPORTE-PAG  TO ACU-IMPTME (I)                   10210301
               MOVE PDT-IMPORTE-PAG  TO W-IMPORTE-ABS                    10210401
               ADD  W-IMPORTE-ABS    TO ACU-IMPTME (I)                   10210501
-      *ANX13-ME <-- F                                                   10210601
+      *SDA57093-2-F                                                     10210601
 075100     ELSE                                                         10220001
 070500        DISPLAY 'ERROR EN MONEDA ' I PDT-DIVISA                   10230001
 075300     END-IF.                                                      10240001
